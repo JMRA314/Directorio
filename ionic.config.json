@@ -1,0 +1,8 @@
+{
+  "name": "Directorio",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "af25e273"
+}

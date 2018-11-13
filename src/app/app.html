@@ -1,0 +1,23 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="doAlert()">
+        Acerca de la aplicación
+      </button>
+    </ion-list>
+    <a href ="http://estrategas.mx">
+      <img src="../../assets/imgs/Logo1.png" width="300px" height="150px" >
+    </a>
+<p>Directorio del personal de Estrategas de México 2018</p>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
