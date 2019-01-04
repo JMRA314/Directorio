@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color = "dark">
     <ion-title>Directorio {{nombre}}</ion-title>
   </ion-navbar>
 
@@ -25,8 +25,8 @@
 
         <ion-list inset>
           <ion-item *ngFor="let user of users">
-            <h3>{{user.usuario | uppercase}}</h3>
-            <h4>{{user.puesto}}</h4>
+            <p style ="word-wrap: break-word; white-space : normal">{{user.usuario | uppercase}}</p>
+            <p style = "color : #a7ada4;">{{user.puesto | uppercase}}</p>
             <ion-thumbnail item-start>
             
               <img [src]="user.imgUrl" >
@@ -34,8 +34,11 @@
               </ion-thumbnail>
            <ion-icon name="mail"><p>{{user.correo}}</p></ion-icon>
            <br> 
-            <ion-icon name ="call"><p class="llamada" (click)="ConfirmaCall(user.celular)">{{user.celular}}</p></ion-icon>
-            <p>{{user.descripccion}}</p>
+            <ion-icon name ="call"><p class="llamada" (click)="ConfirmaCall(user.celular)">{{user.celular}} </p></ion-icon>
+            <button ion-button color = "dark" (click)="copiaTelefono(user.celular)"><ion-icon name="copy"></ion-icon></button>
+            <p>{{user.descripccion}} </p>
+           
+           
           </ion-item>
         </ion-list>
  

@@ -5,6 +5,7 @@ import  { AlertController } from 'ionic-angular';
 import {RestProvider} from '../../providers/rest/rest';
 import {SeleccionPage} from '../seleccion/seleccion';
 import { CallNumber} from '@ionic-native/call-number';
+import { Clipboard } from '@ionic-native/clipboard';
 
 
 
@@ -24,7 +25,7 @@ export class PlazaPage {
 
   nombres : any;
   password : string;
-  constructor(private callNumber : CallNumber,public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController,public restProvider : RestProvider) {
+  constructor ( public clipboard : Clipboard,private callNumber : CallNumber,public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController,public restProvider : RestProvider) {
     this.password= navParams.data;
     this.resetBusqueda();
 
@@ -39,8 +40,20 @@ irDirectorio (plaza:number){
 }
 irSeleccion (){
 
-  this.navCtrl.push(SeleccionPage,this.password);
+  this.navCtrl.push(SeleccionPage);
 }
+copiaTelefono(telefono:string){
+
+  this.clipboard.copy(telefono);
+  let alert = this.alertCtrl.create({
+    title: 'Copiar número',
+    message: 'Se copió '+ telefono+ ' al portapales',
+    buttons: ['Aceptar']
+  });
+  alert.present()
+  
+}
+
 
 
 buscar(nombre:string) {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DirectorioPage } from '../directorio/directorio';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the SeleccionPage page.
  *
@@ -16,10 +16,9 @@ import { DirectorioPage } from '../directorio/directorio';
 })
 export class SeleccionPage {
 
-password :string;
+
 validar : Boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.password= navParams.data;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
     this.valida();
   }
 
@@ -33,13 +32,15 @@ validar : Boolean;
   }
 
 valida(){
-if(this.password =='8520'){
- this.validar=true;
 
-
-}else{
-  this.validar = false;
-}
+  this.storage.get('tipo').then((valor)=>{
+    if(valor == 1){
+      this.validar=true;
+    }
+    if(valor == 2){
+      this.validar=false;
+    }
+  })
 
 }
 

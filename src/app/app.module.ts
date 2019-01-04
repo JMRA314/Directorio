@@ -14,6 +14,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RestProvider } from '../providers/rest/rest';
 import {CallNumber}  from '@ionic-native/call-number';
+import { Clipboard } from '@ionic-native/clipboard';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import {CallNumber}  from '@ionic-native/call-number';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+  
+    IonicStorageModule.forRoot()
 
   ],
   bootstrap: [IonicApp],
@@ -44,7 +48,8 @@ import {CallNumber}  from '@ionic-native/call-number';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider,
-    CallNumber
+    CallNumber,
+    Clipboard
   ]
 })
 export class AppModule {}

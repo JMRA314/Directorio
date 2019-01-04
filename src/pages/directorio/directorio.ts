@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {RestProvider} from '../../providers/rest/rest';
 import { CallNumber} from '@ionic-native/call-number';
 import  { AlertController } from 'ionic-angular';
-
+import { Clipboard } from '@ionic-native/clipboard';
 
 /**
  * Generated class for the DirectorioPage page.
@@ -21,13 +21,30 @@ export class DirectorioPage {
 users: any;
 plaza :number;
 nombre : string;
+telefono :string;
 
 
-constructor(public alertCtrl : AlertController,private callNumber : CallNumber,public restProvider : RestProvider ,public navCtrl: NavController, public navParams: NavParams) {
+constructor(public alertCtrl : AlertController,
+  private callNumber : CallNumber,
+  public restProvider : RestProvider ,
+  public navCtrl: NavController,
+   public navParams: NavParams,
+   public clipboard : Clipboard) {
 this.plaza = navParams.data;
 this.resetBusqueda();
 this.nombrePlaza();
 
+  }
+  copiaTelefono(telefono:string){
+
+    this.clipboard.copy(telefono);
+    let alert = this.alertCtrl.create({
+      title: 'Copiar número',
+      message: 'Se copió '+ telefono + ' al portapales',
+      buttons: ['Aceptar']
+    });
+    alert.present()
+    
   }
 
   getUsers(plaza:number) {
@@ -118,6 +135,8 @@ nombrePlaza(){
  case 5 : this.nombre ='Corporativo';
  break;
  case 7 : this.nombre ='Tuxpan';
+ break;
+ case 10 : this.nombre ='Villahermosa';
  break;
 
  }
